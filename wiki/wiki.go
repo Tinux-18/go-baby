@@ -2,8 +2,8 @@ package wiki
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
+	"strings"
 
 	"cgt.name/pkg/go-mwclient"
 	"github.com/antonholmquist/jason"
@@ -23,7 +23,18 @@ type BabyName struct {
 	PageURL string
 }
 
-func processResponse(resp *jason.Object) []BabyName {
+var client *mwclient.Client
+
+func init() {
+	resp, err := mwclient.New("https://en.wikipedia.org/w/api.php", "RomanianBabyBoyNames/1.0")
+	client = resp
+
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func processResp(resp *jason.Object) []BabyName {
 	var wikiResp WikiResponse
 	err := json.Unmarshal([]byte(resp.String()), &wikiResp)
 	if err != nil {
@@ -32,30 +43,31 @@ func processResponse(resp *jason.Object) []BabyName {
 	return wikiResp.Query.Categorymembers
 }
 
-func getPageUrl(names []BabyName) []BabyName {
-	client, err := mwclient.New("https://en.wikipedia.org/w/api.php", "RomanianBabyBoyNames/1.0")
-	if err != nil {
-		log.Fatal(err)
+func getURL(title string) string {
+	return "https://en.wikipedia.org/wiki/" + title
+}
+
+func cleanName(name string) string {
+	idx := strings.Index(name, "(")
+
+	if idx == -1 {
+		return name
 	}
-	for _, name := range names {
-		resp, err := client.GetPageByID(name.PageID)
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Println(resp)
-		name.PageURL = "https://en.wikipedia.org/wiki/"
+
+	return name[:idx-1]
+}
+
+func prettify(names []BabyName) []BabyName {
+	for i := range names {
+		names[i].Title = cleanName(names[i].Title)
+		names[i].PageURL = getURL(names[i].Title)
 	}
 	return names
 }
 
-func Get() []BabyName { // Initialize the client
-	client, err := mwclient.New("https://en.wikipedia.org/w/api.php", "RomanianBabyBoyNames/1.0")
+func Get() []BabyName {
 
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Set up the query parameters
+	// Set up the query parameters.
 	params := map[string]string{
 		"action":     "query",
 		"list":       "categorymembers",
@@ -70,5 +82,5 @@ func Get() []BabyName { // Initialize the client
 		log.Fatal(err)
 	}
 
-	return processResponse(resp)
+	return prettify(processResp(resp))
 }
