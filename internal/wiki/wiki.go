@@ -59,8 +59,8 @@ func cleanName(name string) string {
 
 func prettify(names []WikiName) []WikiName {
 	for i := range names {
+		names[i].PageURL = getURL(strings.ReplaceAll(names[i].Title, " ", "_"))
 		names[i].Title = cleanName(names[i].Title)
-		names[i].PageURL = getURL(names[i].Title)
 	}
 	return names
 }

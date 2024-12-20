@@ -1,14 +1,16 @@
 package main
 
 import (
-	"fmt"
-
+	"github.com/Tinux-18/go-baby/internal/json"
 	"github.com/Tinux-18/go-baby/internal/wiki"
 )
 
 func main() {
+	filename := "names.json"
+
 	// Get wiki output.
-	wikiData := wiki.Get()
-	Create(wikiData)
-	fmt.Println(wikiData)
+	if !json.FileExists(filename) {
+		wikiData := wiki.Get()
+		json.Create(wikiData, filename)
+	}
 }

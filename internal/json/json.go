@@ -2,13 +2,14 @@ package json
 
 import (
 	"encoding/json"
-	"github.com/Tinux-18/go-baby/internal/wiki"
 	"log"
 	"os"
+
+	"github.com/Tinux-18/go-baby/internal/wiki"
 )
 
 type BabyName struct {
-	Name    string `json:"title"`
+	Name    string
 	PageURL string
 }
 
@@ -28,16 +29,22 @@ func getNames(wikiData []wiki.WikiName) []BabyName {
 	return babyNames
 }
 
-func Create(wikiData []wiki.WikiName) {
+func Create(wikiData []wiki.WikiName, filename string) {
+	// Create JSON data.
 	data := Filter{Names: getNames(wikiData), Favs: []BabyName{}}
-
 	jsonData, err := json.MarshalIndent(data, "", "    ")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	err = os.WriteFile("names.json", jsonData, 0644)
+	// Create file.
+	err = os.WriteFile(filename, jsonData, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func FileExists(fileName string) bool {
+	_, err := os.Stat(fileName)
+	return !os.IsNotExist(err)
 }
