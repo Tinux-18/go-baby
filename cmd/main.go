@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	"go-baby/wiki"
+	"go-baby/internal/wiki"
 )
 
 func main() {
 	// Get wiki output.
-	jason := wiki.Get()
+	wikiData := wiki.Get()
 
-	fmt.Println(jason)
+	fmt.Println(wikiData)
 }

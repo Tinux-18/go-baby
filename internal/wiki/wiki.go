@@ -12,11 +12,11 @@ import (
 type WikiResponse struct {
 	Batchcomplete bool `json:"batchcomplete"`
 	Query         struct {
-		Categorymembers []BabyName `json:"categorymembers"`
+		Categorymembers []WikiName `json:"categorymembers"`
 	} `json:"query"`
 }
 
-type BabyName struct {
+type WikiName struct {
 	PageID  int    `json:"pageid"`
 	NS      int    `json:"ns"`
 	Title   string `json:"title"`
@@ -34,7 +34,7 @@ func init() {
 	}
 }
 
-func processResp(resp *jason.Object) []BabyName {
+func processResp(resp *jason.Object) []WikiName {
 	var wikiResp WikiResponse
 	err := json.Unmarshal([]byte(resp.String()), &wikiResp)
 	if err != nil {
@@ -57,7 +57,7 @@ func cleanName(name string) string {
 	return name[:idx-1]
 }
 
-func prettify(names []BabyName) []BabyName {
+func prettify(names []WikiName) []WikiName {
 	for i := range names {
 		names[i].Title = cleanName(names[i].Title)
 		names[i].PageURL = getURL(names[i].Title)
@@ -65,7 +65,7 @@ func prettify(names []BabyName) []BabyName {
 	return names
 }
 
-func Get() []BabyName {
+func Get() []WikiName {
 
 	// Set up the query parameters.
 	params := map[string]string{
