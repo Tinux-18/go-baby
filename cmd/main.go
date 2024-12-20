@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-	"go-baby/internal/wiki"
+
+	"github.com/Tinux-18/go-baby/internal/wiki"
 )
 
 func main() {
 	// Get wiki output.
 	wikiData := wiki.Get()
-
+	Create(wikiData)
 	fmt.Println(wikiData)
 }
