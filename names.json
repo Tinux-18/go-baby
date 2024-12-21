@@ -361,10 +361,6 @@
             "PageURL": "https://en.wikipedia.org/wiki/Francisc"
         },
         {
-            "Name": "Gabriel",
-            "PageURL": "https://en.wikipedia.org/wiki/Gabriel_(given_name)"
-        },
-        {
             "Name": "Gavriil",
             "PageURL": "https://en.wikipedia.org/wiki/Gavriil"
         },
@@ -697,10 +693,6 @@
             "PageURL": "https://en.wikipedia.org/wiki/Olimpiu"
         },
         {
-            "Name": "Ovidiu",
-            "PageURL": "https://en.wikipedia.org/wiki/Ovidiu_(name)"
-        },
-        {
             "Name": "Panait",
             "PageURL": "https://en.wikipedia.org/wiki/Panait"
         },
@@ -775,10 +767,6 @@
         {
             "Name": "Romulus",
             "PageURL": "https://en.wikipedia.org/wiki/Romulus_(disambiguation)"
-        },
-        {
-            "Name": "Sabin",
-            "PageURL": "https://en.wikipedia.org/wiki/Sabin_(given_name)"
         },
         {
             "Name": "Sava",
@@ -973,5 +961,55 @@
             "PageURL": "https://en.wikipedia.org/wiki/Zamfir"
         }
     ],
-    "Favs": []
+    "Favs": [
+        "Pascal",
+        {
+            "Name": "Adrian",
+            "PageURL": "https://en.wikipedia.org/wiki/Adrian"
+        },
+        "Martin",
+        {
+            "Name": "Filip",
+            "PageURL": "https://en.wikipedia.org/wiki/Filip_(given_name)"
+        },
+        {
+            "Name": "Gabriel",
+            "PageURL": "https://en.wikipedia.org/wiki/Gabriel_(given_name)"
+        },
+        {
+            "Name": "Ovidiu",
+            "PageURL": "https://en.wikipedia.org/wiki/Ovidiu_(name)"
+        },
+        {
+            "Name": "Sabin",
+            "PageURL": "https://en.wikipedia.org/wiki/Sabin_(given_name)"
+        },
+        {
+            "Name": "Dan",
+            "PageURL": "https://en.wikipedia.org/wiki/Dan_(name)"
+        },
+        {
+            "Name": "Iacob",
+            "PageURL": "https://en.wikipedia.org/wiki/Iacob"
+        },
+        {
+            "Name": "Mugur",
+            "PageURL": "https://en.wikipedia.org/wiki/Mugur"
+        },
+        {
+            "Name": "Sava",
+            "PageURL": "https://en.wikipedia.org/wiki/Sava_(name)"
+        },
+        {
+            "Name": "Sebastian",
+            "PageURL": "https://en.wikipedia.org/wiki/Sebastian_(name)"
+        }
+    ],
+    "Favs2": [
+        {
+            "Name": "Adrian",
+            "PageURL": "https://en.wikipedia.org/wiki/Adrian"
+        },
+        "Pascal"
+    ]
 }
